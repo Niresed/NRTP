@@ -110,6 +110,7 @@ public class RTPUtils {
     // смотрит свободная ли территория
     private static boolean isTerritoryFree() {
 
+
         return false;
     }
 }
