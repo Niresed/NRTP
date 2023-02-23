@@ -52,7 +52,7 @@ public class RTPUtils {
         int x = random.nextInt(1000);
         int y = 0;
         int z = random.nextInt(1000);
-
+//s
         Location randomLocation = new Location(player.getWorld(), x, y, z);
         y = randomLocation.getWorld().getHighestBlockYAt(randomLocation) + 1;
         randomLocation.setY(y);
