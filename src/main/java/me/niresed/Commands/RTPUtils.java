@@ -82,8 +82,8 @@ public class RTPUtils {
     // смотрит место безлюдное или нет
     private static boolean isLocationDeserted(Location location, Player player_1){
         double h;
-        for(Player player:Bukkit.getOnlinePlayers()) {
-            if(player_1.equals(player)){
+        for (Player player:Bukkit.getOnlinePlayers()) {
+            if (player_1.equals(player)){
                 continue;
             }
 
