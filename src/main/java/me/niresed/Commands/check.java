@@ -21,7 +21,7 @@ public class check implements CommandExecutor {
         if (sender instanceof Player){
             Player player = (Player) sender;
             try {
-                Town town = TownyAPI.getInstance().getTownBlock(player.getLocation()).getTown();
+                Town town = Objects.requireNonNull(TownyAPI.getInstance().getTownBlock(player.getLocation())).getTown();
                 if (town != null && town.hasResident(player.getName())) {
                     //Execute your code here
                 }
