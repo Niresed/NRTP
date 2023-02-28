@@ -37,7 +37,7 @@ public class RTPUtils {
         boolean s = true;
         while (s) {
             boolean check_location = isLocationDeserted(randomLocation, player);
-            boolean check_territory = isTerritoryFree(player);
+            boolean check_territory = isTerritoryFree(randomLocation);
             if (!check_location && !check_territory){
                 randomLocation = generatingRandomCoordinates(player);
             } else{
@@ -109,8 +109,8 @@ public class RTPUtils {
         return true;
     }
     // смотрит свободная ли территория
-    private static boolean isTerritoryFree(Player player) {
-        if(TownyAPI.getInstance().isWilderness(player.getLocation()))
+    private static boolean isTerritoryFree(Location location) {
+        if(TownyAPI.getInstance().isWilderness(location))
             return true;
         return false;
     }
