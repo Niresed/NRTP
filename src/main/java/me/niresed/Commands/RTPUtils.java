@@ -1,5 +1,8 @@
 package me.niresed.Commands;
 
+import com.palmergames.bukkit.towny.TownyAPI;
+import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
+import com.palmergames.bukkit.towny.object.Town;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -8,6 +11,7 @@ import org.bukkit.entity.Player;
 import com.palmergames.bukkit.towny.Towny;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -37,7 +41,7 @@ public class RTPUtils {
         boolean s = true;
         while (s) {
             boolean check_location = isLocationDeserted(randomLocation, player);
-            boolean check_territory = isTerritoryFree();
+            boolean check_territory = isTerritoryFree(player);
             if (!check_location && !check_territory){
                 randomLocation = generatingRandomCoordinates(player);
             } else{
@@ -109,7 +113,9 @@ public class RTPUtils {
         return true;
     }
     // смотрит свободная ли территория
-    private static boolean isTerritoryFree() {
+    private static boolean isTerritoryFree(Player player) {
+        if(TownyAPI.getInstance().isWilderness(player.getLocation()))
+            return true;
         return false;
     }
 }
