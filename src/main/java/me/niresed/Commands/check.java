@@ -1,6 +1,7 @@
 package me.niresed.Commands;
 
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
+import com.palmergames.bukkit.towny.exceptions.TownyException;
 import com.palmergames.bukkit.towny.object.Town;
 import com.palmergames.bukkit.towny.object.TownBlock;
 import com.palmergames.bukkit.towny.object.Resident;
@@ -25,7 +26,7 @@ public class check implements CommandExecutor {
                 if (town != null && town.hasResident(player.getName())) {
                     //Execute your code here
                 }
-            } catch (NotRegisteredException e) {
+            } catch (TownyException e) {
                 if (TownyAPI.getInstance().isWilderness(player.getLocation()))
                     System.out.println("Check Работает");
             }
