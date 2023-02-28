@@ -21,12 +21,13 @@ public class check implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player){
             Player player = (Player) sender;
-            Town town = null;
-            try {
-                town = TownyAPI.getInstance().getTownBlock(player.getLocation()).getTown();
-            } catch (NotRegisteredException e) {
-                if (town == null){
-                    System.out.println("S");
+            if(Objects.requireNonNull(TownyAPI.getInstance().getTownBlock(player.getLocation())).hasTown())
+                System.out.println("SS");
+            else {
+                try {
+                    Town town = Objects.requireNonNull(TownyAPI.getInstance().getTownBlock(player.getLocation())).getTown();
+                } catch (NotRegisteredException e) {
+                    throw new RuntimeException(e);
                 }
             }
             if (TownyAPI.getInstance().isWilderness(player.getLocation()))
