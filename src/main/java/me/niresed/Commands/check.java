@@ -21,15 +21,16 @@ public class check implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player){
             Player player = (Player) sender;
+            Town town = null;
             try {
-                Town town = Objects.requireNonNull(TownyAPI.getInstance().getTownBlock(player.getLocation())).getTown();
-                if (town == null)
-                    System.out.println("HUY");
+                town = TownyAPI.getInstance().getTownBlock(player.getLocation()).getTown();
             } catch (NotRegisteredException e) {
-                throw new RuntimeException(e);
+                if (town == null){
+                    System.out.println("S");
+                }
             }
             if (TownyAPI.getInstance().isWilderness(player.getLocation()))
-                    System.out.println("Check Работает");
+                System.out.println("Check Работает");
         }
         return true;
     }
