@@ -21,7 +21,7 @@ public class check implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player){
             Player player = (Player) sender;
-            if(Objects.requireNonNull(TownyAPI.getInstance().getTownBlock(player.getLocation())).hasTown())
+            if(Objects.requireNonNull(TownyAPI.getInstance().))
                 System.out.println("SS");
             else {
                 try {
