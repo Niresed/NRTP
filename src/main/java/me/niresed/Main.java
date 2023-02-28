@@ -15,6 +15,6 @@ public final class Main extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this, this);
         getServer().getPluginManager().registerEvents(new Hello(), this);
         Objects.requireNonNull(getCommand("RTP")).setExecutor(new RTP());
-        getCommand("check").setExecutor(new check());
+        Objects.requireNonNull(getCommand("check")).setExecutor(new check());
     }
 }

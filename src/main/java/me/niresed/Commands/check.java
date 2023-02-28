@@ -23,13 +23,13 @@ public class check implements CommandExecutor {
             Player player = (Player) sender;
             try {
                 Town town = Objects.requireNonNull(TownyAPI.getInstance().getTownBlock(player.getLocation())).getTown();
-                if (town != null && town.hasResident(player.getName())) {
-                    //Execute your code here
-                }
-            } catch (TownyException e) {
-                if (TownyAPI.getInstance().isWilderness(player.getLocation()))
-                    System.out.println("Check Работает");
+                if (town == null)
+                    System.out.println("HUY");
+            } catch (NotRegisteredException e) {
+                throw new RuntimeException(e);
             }
+            if (TownyAPI.getInstance().isWilderness(player.getLocation()))
+                    System.out.println("Check Работает");
         }
         return true;
     }
