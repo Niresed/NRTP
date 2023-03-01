@@ -30,7 +30,7 @@ public class RTPUtils {
         bad_blocks.add(Material.FIRE);
     }
 
-    // генерация кординатов
+    // генерация координаты
     public static Location generateLocation(Player player){
         long m = System.currentTimeMillis();
         Location randomLocation = generatingRandomCoordinates(player);
@@ -69,7 +69,7 @@ public class RTPUtils {
         return randomLocation;
     }
 
-    // смотрит если у точки кординатов есть запрещённый блок который создал generateLocation(player)
+    // смотрит если у точки есть запрещённый блок, который создал generateLocation(player)
     private static boolean isLocationSafe(Location location){
         int x = location.getBlockX();
         int y = location.getBlockY();
@@ -110,8 +110,6 @@ public class RTPUtils {
     }
     // смотрит свободная ли территория
     private static boolean isTerritoryFree(Location location) {
-        if(TownyAPI.getInstance().isWilderness(location))
-            return true;
-        return false;
+        return TownyAPI.getInstance().isWilderness(location);
     }
 }
