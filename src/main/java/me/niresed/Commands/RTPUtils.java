@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import com.palmergames.bukkit.towny.Towny;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -36,9 +37,9 @@ public class RTPUtils {
         Location randomLocation = generatingRandomCoordinates(player);
         boolean s = true;
         while (s) {
-            boolean check_location = isLocationDeserted(randomLocation, player);
-            boolean check_territory = isTerritoryFree(randomLocation);
-            if (!check_location && !check_territory){
+            boolean checkLocation = isLocationDeserted(randomLocation, player);
+            boolean checkTerritory = isTerritoryFree(randomLocation, player);
+            if (!checkLocation && !checkTerritory){
                 randomLocation = generatingRandomCoordinates(player);
             } else{
                 s = false;
@@ -84,9 +85,8 @@ public class RTPUtils {
     private static boolean isLocationDeserted(Location location, Player player_1){
         double h;
         for (Player player:Bukkit.getOnlinePlayers()) {
-            if (player_1.equals(player)){
+            if (player_1.equals(player))
                 continue;
-            }
 
             int x = location.getBlockX();
             int y = location.getBlockY();
@@ -98,9 +98,9 @@ public class RTPUtils {
 
             double a = playerPositionX - x;
             double b = playerPositionZ - z;
-            double height = playerPositionY - y;
+            double c = playerPositionY - y;
 
-            h = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(height, 2));
+            h = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2));
 
             if (h < 150){
                 return false;
@@ -109,7 +109,7 @@ public class RTPUtils {
         return true;
     }
     // смотрит свободная ли территория
-    private static boolean isTerritoryFree(Location location) {
+    private static boolean isTerritoryFree(Location location, Player player) {
         return TownyAPI.getInstance().isWilderness(location);
     }
 }
