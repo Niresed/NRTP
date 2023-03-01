@@ -82,9 +82,8 @@ public class RTPUtils {
 
     // смотрит место безлюдное или нет
     private static boolean isLocationDeserted(Location location, Player player_1){
-        // h - Гипотенуз
         // a, b, c - стороны
-        double h;
+        double hypotenuse;
         for (Player player:Bukkit.getOnlinePlayers()) {
             if (player_1.equals(player))
                 continue;
@@ -101,9 +100,9 @@ public class RTPUtils {
             double b = playerPositionZ - z;
             double c = playerPositionY - y;
 
-            h = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2));
+            hypotenuse = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2));
 
-            if (h < 150){
+            if (hypotenuse < 150){
                 return false;
             }
         }
