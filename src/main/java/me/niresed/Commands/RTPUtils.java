@@ -6,7 +6,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import com.palmergames.bukkit.towny.Towny;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -14,21 +13,21 @@ import java.util.Random;
 
 public class RTPUtils {
     // запрещённые блоки
-    public static HashSet<Material> bad_blocks = new HashSet<>();
+    public static HashSet<Material> badBlocks = new HashSet<>();
     static {
-        bad_blocks.add(Material.LAVA);
-        bad_blocks.add(Material.WATER);
-        bad_blocks.add(Material.OAK_LEAVES);
-        bad_blocks.add(Material.SPRUCE_LEAVES);
-        bad_blocks.add(Material.JUNGLE_LEAVES);
-        bad_blocks.add(Material.ACACIA_LEAVES);
-        bad_blocks.add(Material.DARK_OAK_LEAVES);
-        bad_blocks.add(Material.COBWEB);
-        bad_blocks.add(Material.CACTUS);
-        bad_blocks.add(Material.SWEET_BERRY_BUSH);
-        bad_blocks.add(Material.CAMPFIRE);
-        bad_blocks.add(Material.MAGMA_BLOCK);
-        bad_blocks.add(Material.FIRE);
+        badBlocks.add(Material.LAVA);
+        badBlocks.add(Material.WATER);
+        badBlocks.add(Material.OAK_LEAVES);
+        badBlocks.add(Material.SPRUCE_LEAVES);
+        badBlocks.add(Material.JUNGLE_LEAVES);
+        badBlocks.add(Material.ACACIA_LEAVES);
+        badBlocks.add(Material.DARK_OAK_LEAVES);
+        badBlocks.add(Material.COBWEB);
+        badBlocks.add(Material.CACTUS);
+        badBlocks.add(Material.SWEET_BERRY_BUSH);
+        badBlocks.add(Material.CAMPFIRE);
+        badBlocks.add(Material.MAGMA_BLOCK);
+        badBlocks.add(Material.FIRE);
     }
 
     // генерация координаты
@@ -78,7 +77,7 @@ public class RTPUtils {
         Block block = location.getWorld().getBlockAt(x, y, z);
         Block below = location.getWorld().getBlockAt(x, y - 1, z);
         Block above = location.getWorld().getBlockAt(x, y + 1, z);
-        return !(bad_blocks.contains(below.getType()) || (block.getType().isSolid()) || (above.getType().isSolid()));
+        return !(badBlocks.contains(below.getType()) || (block.getType().isSolid()) || (above.getType().isSolid()));
     }
 
     // смотрит место безлюдное или нет
