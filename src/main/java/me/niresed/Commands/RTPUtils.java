@@ -69,7 +69,7 @@ public class RTPUtils {
         return randomLocation;
     }
 
-    // смотрит если у точки есть запрещённый блок, который создал generateLocation(player)
+    // смотрит если у точки есть запрещённый блок, который создал gene+teLocation(player)
     private static boolean isLocationSafe(Location location){
         int x = location.getBlockX();
         int y = location.getBlockY();
@@ -82,6 +82,8 @@ public class RTPUtils {
 
     // смотрит место безлюдное или нет
     private static boolean isLocationDeserted(Location location, Player player_1){
+        // h - Гипотенуз
+        // a, b, c - стороны
         double h;
         for (Player player:Bukkit.getOnlinePlayers()) {
             if (player_1.equals(player))
