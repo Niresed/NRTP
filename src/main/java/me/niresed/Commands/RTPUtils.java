@@ -34,14 +34,13 @@ public class RTPUtils {
     public static Location generateLocation(Player player){
         long m = System.currentTimeMillis();
         Location randomLocation = generatingRandomCoordinates(player);
-        boolean s = true;
-        while (s) {
+        while (true) {
             boolean checkLocation = isLocationDeserted(randomLocation, player);
             boolean checkTerritory = isTerritoryFree(randomLocation, player);
             if (!checkLocation && !checkTerritory){
                 randomLocation = generatingRandomCoordinates(player);
             } else{
-                s = false;
+                break;
             }
         }
         System.out.print((System.currentTimeMillis() - m) / 1000f);
@@ -69,7 +68,7 @@ public class RTPUtils {
         return randomLocation;
     }
 
-    // смотрит если у точки есть запрещённый блок, который создал gene+teLocation(player)
+    // смотрит если у точки есть запрещённый блок, который создал generateLocation(player)
     private static boolean isLocationSafe(Location location){
         int x = location.getBlockX();
         int y = location.getBlockY();
@@ -101,10 +100,8 @@ public class RTPUtils {
             double c = playerPositionY - y;
 
             hypotenuse = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2));
-
-            if (hypotenuse < 150){
+            if (hypotenuse < 150)
                 return false;
-            }
         }
         return true;
     }
