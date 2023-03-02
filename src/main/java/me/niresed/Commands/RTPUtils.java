@@ -17,6 +17,7 @@ public class RTPUtils {
 
     // запрещённые блоки
     private static final HashSet<Material> badBlocks = new HashSet<>();
+
     static {
         badBlocks.add(Material.LAVA);
         badBlocks.add(Material.WATER);
