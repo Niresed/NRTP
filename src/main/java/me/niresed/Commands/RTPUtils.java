@@ -17,7 +17,8 @@ public class RTPUtils {
 
     // запрещённые блоки
     private static final HashSet<Material> badBlocks = new HashSet<>();
-    static {
+    static
+    {
         badBlocks.add(Material.LAVA);
         badBlocks.add(Material.WATER);
         badBlocks.add(Material.OAK_LEAVES);
@@ -34,7 +35,8 @@ public class RTPUtils {
     }
 
     // генерация координаты
-    public static Location generateLocation(Player thisPlayer){
+    public static Location generateLocation(Player thisPlayer)
+    {
         player = thisPlayer;
         long m = System.currentTimeMillis();
         location = generatingRandomCoordinates();
@@ -51,7 +53,8 @@ public class RTPUtils {
         System.out.println("Seconds");
         return location;
     }
-    private static Location generatingRandomCoordinates(){
+    private static Location generatingRandomCoordinates()
+    {
         Random random = new Random();
         int x = random.nextInt(1000);
         int y = 0;
@@ -73,7 +76,8 @@ public class RTPUtils {
     }
 
     // смотрит если у точки есть запрещённый блок, который создал generateLocation(player)
-    private static boolean isLocationSafe(){
+    private static boolean isLocationSafe()
+    {
         int x = location.getBlockX();
         int y = location.getBlockY();
         int z = location.getBlockZ();
@@ -84,20 +88,22 @@ public class RTPUtils {
     }
 
     // смотрит место безлюдное или нет
-    private static boolean isLocationDeserted(){
+    private static boolean isLocationDeserted()
+    {
         // a, b, c - стороны
         double hypotenuse;
-        for (Player thisPlayer :Bukkit.getOnlinePlayers()) {
-            if (thisPlayer.equals(player))
+        for (Player randomPlayers :Bukkit.getOnlinePlayers())
+        {
+            if (randomPlayers.equals(player))
                 continue;
 
             int x = location.getBlockX();
             int y = location.getBlockY();
             int z = location.getBlockZ();
 
-            double playerPositionX = thisPlayer.getLocation().getX();
-            double playerPositionY = thisPlayer.getLocation().getY();
-            double playerPositionZ = thisPlayer.getLocation().getZ();
+            double playerPositionX = randomPlayers.getLocation().getX();
+            double playerPositionY = randomPlayers.getLocation().getY();
+            double playerPositionZ = randomPlayers.getLocation().getZ();
 
             double a = playerPositionX - x;
             double b = playerPositionZ - z;
