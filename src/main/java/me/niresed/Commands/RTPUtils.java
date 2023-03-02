@@ -17,8 +17,7 @@ public class RTPUtils {
 
     // запрещённые блоки
     private static final HashSet<Material> badBlocks = new HashSet<>();
-    static
-    {
+    static {
         badBlocks.add(Material.LAVA);
         badBlocks.add(Material.WATER);
         badBlocks.add(Material.OAK_LEAVES);
@@ -35,17 +34,17 @@ public class RTPUtils {
     }
 
     // генерация координаты
-    public static Location generateLocation(Player thisPlayer)
-    {
+    public static Location generateLocation(Player thisPlayer) {
         player = thisPlayer;
         long m = System.currentTimeMillis();
         location = generatingRandomCoordinates();
         while (true) {
             boolean checkLocation = isLocationDeserted();
             boolean checkTerritory = isTerritoryFree();
-            if (!checkLocation && !checkTerritory){
+
+            if (!checkLocation && !checkTerritory) {
                 location = generatingRandomCoordinates();
-            } else{
+            } else {
                 break;
             }
         }
@@ -53,8 +52,8 @@ public class RTPUtils {
         System.out.println("Seconds");
         return location;
     }
-    private static Location generatingRandomCoordinates()
-    {
+
+    private static Location generatingRandomCoordinates() {
         Random random = new Random();
         int x = random.nextInt(1000);
         int y = 0;
@@ -63,7 +62,7 @@ public class RTPUtils {
         location = new Location(player.getWorld(), x, y, z);
         y = location.getWorld().getHighestBlockYAt(location) + 1;
         location.setY(y);
-        while (!isLocationSafe()){
+        while (!isLocationSafe()) {
             x = random.nextInt(1000);
             y = 0;
             z = random.nextInt(1000);
@@ -76,8 +75,7 @@ public class RTPUtils {
     }
 
     // смотрит если у точки есть запрещённый блок, который создал generateLocation(player)
-    private static boolean isLocationSafe()
-    {
+    private static boolean isLocationSafe() {
         int x = location.getBlockX();
         int y = location.getBlockY();
         int z = location.getBlockZ();
@@ -88,12 +86,10 @@ public class RTPUtils {
     }
 
     // смотрит место безлюдное или нет
-    private static boolean isLocationDeserted()
-    {
+    private static boolean isLocationDeserted() {
         // a, b, c - стороны
         double hypotenuse;
-        for (Player randomPlayers :Bukkit.getOnlinePlayers())
-        {
+        for (Player randomPlayers : Bukkit.getOnlinePlayers()) {
             if (randomPlayers.equals(player))
                 continue;
 
@@ -115,6 +111,7 @@ public class RTPUtils {
         }
         return true;
     }
+
     // смотрит свободная ли территория
     private static boolean isTerritoryFree() {
         return TownyAPI.getInstance().isWilderness(location);
