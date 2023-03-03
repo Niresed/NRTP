@@ -1,6 +1,8 @@
 package me.niresed.Commands;
 
 import com.palmergames.bukkit.towny.TownyAPI;
+import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
+import com.palmergames.bukkit.towny.object.Town;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -90,17 +92,17 @@ public class RTPUtils {
     private static boolean isLocationDeserted() {
         // a, b, c - стороны
         double hypotenuse;
-        for (Player randomPlayers : Bukkit.getOnlinePlayers()) {
-            if (randomPlayers.equals(player))
+        for (Player randomPlayer : Bukkit.getOnlinePlayers()) {
+            if (randomPlayer.equals(player))
                 continue;
 
             int x = location.getBlockX();
             int y = location.getBlockY();
             int z = location.getBlockZ();
 
-            double playerPositionX = randomPlayers.getLocation().getX();
-            double playerPositionY = randomPlayers.getLocation().getY();
-            double playerPositionZ = randomPlayers.getLocation().getZ();
+            double playerPositionX = randomPlayer.getLocation().getX();
+            double playerPositionY = randomPlayer.getLocation().getY();
+            double playerPositionZ = randomPlayer.getLocation().getZ();
 
             double a = playerPositionX - x;
             double b = playerPositionZ - z;
@@ -115,6 +117,14 @@ public class RTPUtils {
 
     // смотрит свободная ли территория
     private static boolean isTerritoryFree() {
+        if (TownyAPI.getInstance().isWilderness(location)) {
+            return true;
+        } else {
+            Town town = TownyAPI.getInstance().getTown(player.getLocation());
+            if (town != null && town.hasResident(player.getName())) {
+
+            }
+        }
         return TownyAPI.getInstance().isWilderness(location);
     }
 }
