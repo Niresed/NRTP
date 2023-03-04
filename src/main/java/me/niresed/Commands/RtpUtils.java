@@ -2,17 +2,24 @@ package me.niresed.Commands;
 
 import com.palmergames.bukkit.towny.TownyAPI;
 import com.palmergames.bukkit.towny.object.Town;
+import me.niresed.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 
 
 public class RtpUtils {
+    private static final Plugin plugin = Main.getPlugin(Main.class);
+    private static final ArrayList<Integer> coordinate = (ArrayList<Integer>) plugin.getConfig().getIntegerList("random teleport region");
+
+
     private static Location location;
     private static Player player;
 
@@ -57,9 +64,11 @@ public class RtpUtils {
 
     private static Location generatingRandomCoordinates() {
         Random random = new Random();
-        int x = random.nextInt(1000);
+        int minX = coordinate.get(0), minZ = coordinate.get(1);
+        int maxX = coordinate.get(2), maxZ = coordinate.get(2);
+        int x = random.nextInt((maxX - minX + 1) + minX);
         int y = 0;
-        int z = random.nextInt(1000);
+        int z = random.nextInt((maxZ - minZ + 1) + minZ);
 
         location = new Location(player.getWorld(), x, y, z);
         y = location.getWorld().getHighestBlockYAt(location) + 1;
