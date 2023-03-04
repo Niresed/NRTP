@@ -19,4 +19,4 @@ public class RtpRespawnEvent implements Listener {
             event.setRespawnLocation(location);
         }
     }
-}//
+}

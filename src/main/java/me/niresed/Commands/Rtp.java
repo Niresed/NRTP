@@ -18,7 +18,7 @@ public class Rtp implements CommandExecutor {
             } else{
                 player.sendMessage(ChatColor.RED + "" + "Sorry but you dont have permission (nrtp.rtp) if you think it is not n");
             }
-//
+
         }
         return true;
     }
