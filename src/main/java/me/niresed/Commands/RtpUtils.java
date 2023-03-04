@@ -92,8 +92,9 @@ public class RtpUtils {
         // a, b, c - стороны
         double hypotenuse;
         for (Player randomPlayer : Bukkit.getOnlinePlayers()) {
-            if (randomPlayer.equals(player))
+            if (randomPlayer.equals(player)) {
                 continue;
+            }
 
             int x = location.getBlockX();
             int y = location.getBlockY();
@@ -108,8 +109,9 @@ public class RtpUtils {
             double c = playerPositionY - y;
 
             hypotenuse = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2));
-            if (hypotenuse < 150)
+            if (hypotenuse < 150) {
                 return false;
+            }
         }
         return true;
     }
@@ -118,12 +120,12 @@ public class RtpUtils {
     private static boolean isTerritoryFree() {
         if (TownyAPI.getInstance().isWilderness(location)) {
             return true;
-        }  /* else {
+        }  else {
             Town town = TownyAPI.getInstance().getTown(player.getLocation());
             if (town != null && town.hasResident(player.getName())) {
+                Bukkit.getLogger().info("the player is resident");
             }
         }
-        */
         return TownyAPI.getInstance().isWilderness(location);
     }
 }
