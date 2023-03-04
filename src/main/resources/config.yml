@@ -1,0 +1,7 @@
+#            --------------------------------------------------------
+#            |             Welcome to config NRTP                    |
+#            --------------------------------------------------------
+
+
+# causes of permission error when the player used command "rtp"
+errorReasonsRtp: 'Sorry but you do not have permission for this command'

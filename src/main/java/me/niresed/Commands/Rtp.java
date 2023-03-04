@@ -1,5 +1,7 @@
 package me.niresed.Commands;
 
+import org.bukkit.plugin.Plugin;
+import me.niresed.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,14 +11,16 @@ import org.jetbrains.annotations.NotNull;
 
 
 public class Rtp implements CommandExecutor {
+    Plugin plugin = Main.getPlugin(Main.class);
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
+            String errorReasons = plugin.getConfig().getString("errorReasonsRtp");
             if(player.hasPermission("nrtp.rtp")) {
                 player.teleport(RtpUtils.generateLocation(player));
             } else{
-                player.sendMessage(ChatColor.RED + "" + "Sorry but you dont have permission (nrtp.rtp) if you think it is not n");
+                player.sendMessage(ChatColor.RED + "" + errorReasons);
             }
 
         }
