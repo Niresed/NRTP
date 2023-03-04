@@ -16,7 +16,7 @@ public class Rtp implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            String errorReasons = plugin.getConfig().getString("errorReasonsRtp");
+            String errorReasons = plugin.getConfig().getString("error reason RTP");
             if(player.hasPermission("nrtp.rtp")) {
                 player.teleport(RtpUtils.generateLocation(player));
             } else{
