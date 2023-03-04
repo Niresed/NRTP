@@ -1,7 +1,6 @@
 package me.niresed.Commands;
 
 import com.palmergames.bukkit.towny.TownyAPI;
-import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.object.Town;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -122,7 +121,6 @@ public class RTPUtils {
         } else {
             Town town = TownyAPI.getInstance().getTown(player.getLocation());
             if (town != null && town.hasResident(player.getName())) {
-
             }
         }
         return TownyAPI.getInstance().isWilderness(location);
