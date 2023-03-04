@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 
-public class RTPUtils {
+public class RtpUtils {
     private static Location location;
     private static Player player;
 
