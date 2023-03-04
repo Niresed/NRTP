@@ -115,7 +115,7 @@ public class RtpUtils {
         }
         return true;
     }
-
+//s
     // смотрит свободная ли территория
     private static boolean isTerritoryFree() {
         if (TownyAPI.getInstance().isWilderness(location)) {
