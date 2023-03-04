@@ -118,11 +118,12 @@ public class RtpUtils {
     private static boolean isTerritoryFree() {
         if (TownyAPI.getInstance().isWilderness(location)) {
             return true;
-        } else {
+        }  /* else {
             Town town = TownyAPI.getInstance().getTown(player.getLocation());
             if (town != null && town.hasResident(player.getName())) {
             }
         }
+        */
         return TownyAPI.getInstance().isWilderness(location);
     }
 }
