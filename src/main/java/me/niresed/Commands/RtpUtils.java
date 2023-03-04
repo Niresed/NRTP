@@ -65,7 +65,7 @@ public class RtpUtils {
     private static Location generatingRandomCoordinates() {
         Random random = new Random();
         int minX = coordinate.get(0), minZ = coordinate.get(1);
-        int maxX = coordinate.get(2), maxZ = coordinate.get(2);
+        int maxX = coordinate.get(2), maxZ = coordinate.get(3);
         int x = random.nextInt((maxX - minX + 1) + minX);
         int y = 0;
         int z = random.nextInt((maxZ - minZ + 1) + minZ);
@@ -127,14 +127,14 @@ public class RtpUtils {
 
     // смотрит свободная ли территория
     private static boolean isTerritoryFree() {
-        if (TownyAPI.getInstance().isWilderness(location)) {
-            return true;
-        }  else {
-            Town town = TownyAPI.getInstance().getTown(player.getLocation());
-            if (town != null && town.hasResident(player.getName())) {
-                Bukkit.getLogger().info("the player is resident");
-            }
-        }
+//        if (TownyAPI.getInstance().isWilderness(location)) {
+//            return true;
+//        }  else {
+//            Town town = TownyAPI.getInstance().getTown(player.getLocation());
+//            if (town != null && town.hasResident(player.getName())) {
+//                Bukkit.getLogger().info("the player is resident");
+//            }
+//        }
         return TownyAPI.getInstance().isWilderness(location);
     }
 }
