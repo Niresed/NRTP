@@ -12,7 +12,6 @@ public class RtpJoinEvent implements Listener {
         Player player = event.getPlayer();
         if (!player.hasPlayedBefore()) {
             player.teleport(RtpUtils.generateLocation(player));
-            System.out.println("Teleported");
         }
     }
 
