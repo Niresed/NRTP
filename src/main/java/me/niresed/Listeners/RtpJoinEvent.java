@@ -14,5 +14,5 @@ public class RtpJoinEvent implements Listener {
             player.teleport(RtpUtils.generateLocation(player));
         }
     }
-
+//
 }
