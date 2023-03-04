@@ -74,9 +74,13 @@ public class RtpUtils {
         y = location.getWorld().getHighestBlockYAt(location) + 1;
         location.setY(y);
         while (!isLocationSafe()) {
-            x = random.nextInt(1000);
+            minX = coordinate.get(0);
+            minZ = coordinate.get(1);
+            maxX = coordinate.get(2);
+            maxZ = coordinate.get(2);
+            x = random.nextInt((maxX - minX + 1) + minX);
             y = 0;
-            z = random.nextInt(1000);
+            z = random.nextInt((maxZ - minZ + 1) + minZ);
 
             location = new Location(player.getWorld(), x, y, z);
             y = location.getWorld().getHighestBlockYAt(location) + 1;
