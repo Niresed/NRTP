@@ -97,7 +97,6 @@ public class RtpUtils {
     private static boolean isLocationDeserted() {
         double s = 150;
         for (Player randomPlayer : location.getNearbyPlayers(s)) {
-            System.out.println(randomPlayer);
             if (!(randomPlayer == null)){
                 if (randomPlayer.equals(player)) {
                     continue;
