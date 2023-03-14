@@ -97,10 +97,7 @@ public class RtpUtils {
     private static boolean isLocationDeserted() {
         // a, b, c - стороны
         double s = 150;
-        System.out.println(s);
-        double hypotenuse;
         for (Player randomPlayer : location.getNearbyPlayers(s)) {
-            System.out.println(randomPlayer);
             if (!(randomPlayer == null)){
                 if (randomPlayer.equals(player)) {
                     continue;
