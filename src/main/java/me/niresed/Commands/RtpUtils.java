@@ -95,7 +95,6 @@ public class RtpUtils {
 
     // смотрит место безлюдное или нет
     private static boolean isLocationDeserted() {
-        // a, b, c - стороны
         double s = 150;
         for (Player randomPlayer : location.getNearbyPlayers(s)) {
             if (!(randomPlayer == null)){
