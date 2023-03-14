@@ -18,11 +18,8 @@ import java.util.Random;
 public class RtpUtils {
     private static final Plugin plugin = Main.getPlugin(Main.class);
     private static final ArrayList<Integer> coordinate = (ArrayList<Integer>) plugin.getConfig().getIntegerList("random teleport region");
-
-
     private static Location location;
     private static Player player;
-
     // запрещённые блоки
     private static final HashSet<Material> badBlocks = new HashSet<>();
 
@@ -99,26 +96,15 @@ public class RtpUtils {
     // смотрит место безлюдное или нет
     private static boolean isLocationDeserted() {
         // a, b, c - стороны
+        double s = 150;
+        System.out.println(s);
         double hypotenuse;
-        for (Player randomPlayer : Bukkit.getOnlinePlayers()) {
-            if (randomPlayer.equals(player)) {
-                continue;
-            }
-
-            int x = location.getBlockX();
-            int y = location.getBlockY();
-            int z = location.getBlockZ();
-
-            double playerPositionX = randomPlayer.getLocation().getX();
-            double playerPositionY = randomPlayer.getLocation().getY();
-            double playerPositionZ = randomPlayer.getLocation().getZ();
-
-            double a = playerPositionX - x;
-            double b = playerPositionZ - z;
-            double c = playerPositionY - y;
-
-            hypotenuse = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2));
-            if (hypotenuse < 150) {
+        for (Player randomPlayer : location.getNearbyPlayers(s)) {
+            System.out.println(randomPlayer);
+            if (!(randomPlayer == null)){
+                if (randomPlayer.equals(player)) {
+                    continue;
+                }
                 return false;
             }
         }
