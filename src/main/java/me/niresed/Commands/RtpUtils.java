@@ -97,6 +97,7 @@ public class RtpUtils {
     private static boolean isLocationDeserted() {
         double s = 150;
         for (Player randomPlayer : location.getNearbyPlayers(s)) {
+            System.out.println(randomPlayer);
             if (!(randomPlayer == null)){
                 if (randomPlayer.equals(player)) {
                     continue;
@@ -109,14 +110,6 @@ public class RtpUtils {
 
     // смотрит свободная ли территория
     private static boolean isTerritoryFree() {
-//        if (TownyAPI.getInstance().isWilderness(location)) {
-//            return true;
-//        }  else {
-//            Town town = TownyAPI.getInstance().getTown(player.getLocation());
-//            if (town != null && town.hasResident(player.getName())) {
-//                Bukkit.getLogger().info("the player is resident");
-//            }
-//        }
         return TownyAPI.getInstance().isWilderness(location);
     }
 }
