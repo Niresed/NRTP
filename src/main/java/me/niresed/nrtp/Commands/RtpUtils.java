@@ -41,6 +41,9 @@ public class RtpUtils {
         badBlocks.add(Material.MUSHROOM_STEM);
         badBlocks.add(Material.MUSHROOM_STEW);
         badBlocks.add(Material.KELP);
+        badBlocks.add(Material.SEAGRASS);
+        badBlocks.add(Material.LILY_PAD);
+        badBlocks.add(Material.TURTLE_EGG);
     }
 
     // генерация координаты
@@ -58,7 +61,7 @@ public class RtpUtils {
                 break;
             }
         }
-        double finishMinute = (System.currentTimeMillis() - startMinute) / 1000d;
+        double finishMinute = (System.currentTimeMillis() - startMinute) / 1000f;
         Bukkit.getLogger().info(String.format("%f Seconds %n", finishMinute));
         location.setX(location.getX() + 0.5f);
         location.setZ(location.getZ() + 0.5f);
