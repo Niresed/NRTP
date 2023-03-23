@@ -1,0 +1,15 @@
+#            --------------------------------------------------------
+#            |             Welcome to config NRTP                    |
+#            --------------------------------------------------------
+
+
+# NRTP works on the principle of a zone or regions (as you prefer), you mark some zone and rtp works there
+random teleport region:
+  - 0 # from X
+  - 0 # from Z
+  - 1000 # to X
+  - 1000 # to Z
+
+# causes of permission error when the player used command "rtp"
+error reason RTP: 'Sorry but you do not have permission for this command'
+
