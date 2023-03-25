@@ -2,6 +2,9 @@ name: NRTP
 version: '${project.version}'
 main: me.niresed.nrtp.NRTP
 api-version: 1.16
+depend:
+  - Towny
+
 commands:
   rtp:
     description: It is random teleport player
