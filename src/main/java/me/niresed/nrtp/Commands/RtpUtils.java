@@ -46,25 +46,21 @@ public class RtpUtils {
         badBlocks.add(Material.TURTLE_EGG);
     }
 
-    // генерация координаты
+
     public static Location generateLocation(Player thisPlayer) {
         player = thisPlayer;
-        long startMinute = System.currentTimeMillis();
         Location location = generatingRandomCoordinates();
         while (true) {
             boolean checkLocation = isLocationDeserted(location);
             boolean checkTerritory = isTerritoryFree(location);
             boolean checkGeneration = isLocationSafe(location);
-            if (!checkLocation || !checkTerritory || !checkGeneration) {
+            if (!(checkLocation && checkTerritory && checkGeneration)) {
                 location = generatingRandomCoordinates();
             } else {
                 break;
             }
         }
-        double finishMinute = (System.currentTimeMillis() - startMinute) / 1000f;
-        Bukkit.getLogger().info(String.format("%f Seconds %n", finishMinute));
-        location.setX(location.getX() + 0.5f);
-        location.setZ(location.getZ() + 0.5f);
+
         return location;
     }
 
@@ -72,17 +68,21 @@ public class RtpUtils {
         Random random = new Random();
         int minX = coordinate.get(0), minZ = coordinate.get(1);
         int maxX = coordinate.get(2), maxZ = coordinate.get(3);
-        int x = random.nextInt((maxX - minX + 1) + minX);
+
+        int x = random.nextInt(minX, maxX);
         int y = 0;
-        int z = random.nextInt((maxZ - minZ + 1) + minZ);
+        int z = random.nextInt(minZ, maxZ);
 
         Location location = new Location(player.getWorld(), x, y, z);
         y = location.getWorld().getHighestBlockYAt(location) + 1;
         location.setY(y);
+
+        location.setX(location.getX() + 0.5);
+        location.setZ(location.getZ() + 0.5);
+
         return location;
     }
 
-    // смотрит если у точки есть запрещённый блок, который создал generateLocation(player)
     private static boolean isLocationSafe(Location location) {
         int x = location.getBlockX();
         int y = location.getBlockY();
@@ -93,7 +93,6 @@ public class RtpUtils {
         return !(badBlocks.contains(below.getType()) || (block.getType().isSolid()) || (above.getType().isSolid()));
     }
 
-    // смотрит место безлюдное или нет
     private static boolean isLocationDeserted(Location location) {
         for (Player randomPlayer: location.getNearbyPlayers(100)) {
             if (randomPlayer.equals(player)) {
@@ -104,67 +103,26 @@ public class RtpUtils {
         return true;
     }
 
-    // смотрит свободная ли территория
-    private static boolean isTerritoryFree(Location location) {
+    private static boolean isTerritoryFree(Location origLoc) {
+        Location location = origLoc.clone();
         double positionX = location.getX();
         double positionZ = location.getZ();
         double x = -64;
         double z = -64;
-        double minZ = -48;
-        double minX = -64;
-        double maxZ = 64;
-        double maxX = 64;
-        location.clone().setZ(positionZ + z);
-        location.clone().setX(positionX + x);
-        if (!TownyAPI.getInstance().isWilderness(location)) {
-            return false;
-        }
-        for (int i = 0; i < 5; i++){
-            if (i == 4){
-                location.clone().setZ(positionZ);
-                location.clone().setX(positionX);
-                if (!TownyAPI.getInstance().isWilderness(location)) {
-                    return false;
-                }
-                break;
-            }
-            // слева
-            while (x < maxX) {
-                x += 16;
-                location.clone().setX(positionX + x);
-                if (!TownyAPI.getInstance().isWilderness(location)) {
-                    return false;
-                }
+        location.setZ(positionZ + z);
+        location.setX(positionX + x);
 
-            }
-            // сверху
-            while (z < maxZ) {
-                z += 16;
-                location.clone().setZ(positionZ + z);
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                x += 16;
+                location.setX(positionX + x);
                 if (!TownyAPI.getInstance().isWilderness(location)) {
                     return false;
                 }
             }
-            // справа
-            while (x > minX) {
-                x -= 16;
-                location.clone().setX(positionX + x);
-                if (!TownyAPI.getInstance().isWilderness(location)) {
-                    return false;
-                }
-            }
-            // снизу
-            while (z > minZ) {
-                z -= 16;
-                location.clone().setZ(positionZ + z);
-                if (!TownyAPI.getInstance().isWilderness(location)) {
-                    return false;
-                }
-            }
-            maxX -= 16;
-            minX += 16;
-            maxZ -= 16;
-            minZ += 16;
+
+            x = -64; z += 16;
+            location.setZ(positionZ + z);
         }
         return true;
     }

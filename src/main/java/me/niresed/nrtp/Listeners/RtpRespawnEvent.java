@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class RtpRespawnEvent implements Listener {
     @EventHandler
-    public void onRTP(PlayerRespawnEvent event) {
+    public void onRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
         Town town = TownyAPI.getInstance().getTown(player);
         if (town == null) {

@@ -9,3 +9,8 @@ commands:
   rtp:
     description: It is random teleport player
     usage: you are teleported
+
+permissions:
+  nrtp.rtp:
+    description: Access to the ntrp command
+    default: op

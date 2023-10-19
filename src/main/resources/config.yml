@@ -2,21 +2,12 @@
 #            |             Welcome to config NRTP                    |
 #            --------------------------------------------------------
 
-
-# NRTP works on the principle of a zone, you mark some zone and rtp works there
 random teleport region:
   - 0 # from X
   - 0 # from Z
   - 1000 # to X
   - 1000 # to Z
 
-# errors
-
-# causes of permission error when the player used command "rtp"
-reason error RTP: 'Sorry but you do not have permission for this command'
-# when a player wrote an incorrect sub command, an error is generated that there is no such player on the server
-player error RTP: 'there is no such player on the server'
-# when the player wrote the wrong command
-command error RTP: 'you wrote the wrong command'
-# when does not write under commands in the console
-lack of under commands: 'you did not write under the command'
+permission error: 'you do not have permission for this command'
+player error: 'there is no such player on the server'
+command error: 'you wrote the wrong command'

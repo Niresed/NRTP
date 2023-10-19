@@ -13,55 +13,50 @@ import org.jetbrains.annotations.NotNull;
 
 public class Rtp implements CommandExecutor {
     Plugin plugin = NRTP.getPlugin(NRTP.class);
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        // ошибки
-        String reasonsError = plugin.getConfig().getString("error reason RTP");
-        String playerError = plugin.getConfig().getString("player error RTP");
-        String commandError = plugin.getConfig().getString("command error RTP");
-        String lackOfUnderCommands = plugin.getConfig().getString("lack of under commands");
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
+        String permissionError = plugin.getConfig().getString("permission error");
+        String playerError = plugin.getConfig().getString("player error");
+        String commandError = plugin.getConfig().getString("command error");
 
-            if(player.hasPermission("nrtp.rtp")) {
-                if (args.length == 0){
+        if (sender instanceof Player player) {
+
+            if (player.hasPermission("nrtp.rtp")) {
+                if (args.length == 0) {
                     player.teleport(RtpUtils.generateLocation(player));
 
                 } else if (args.length == 1) {
-                    for(Player onlinePlayers : Bukkit.getOnlinePlayers()){
-                        if (onlinePlayers.getName().equals(args[0])){
-                            onlinePlayers.teleport(RtpUtils.generateLocation(onlinePlayers));
-                            return true;
-                        }
+                    Player rtpPlayer = Bukkit.getPlayer(args[0]);
+
+                    if (rtpPlayer != null) {
+                        rtpPlayer.teleport(RtpUtils.generateLocation(rtpPlayer));
+                    } else {
+                        player.sendMessage(ChatColor.RED + playerError);
                     }
-                    player.sendMessage(ChatColor.RED + "" + playerError);
 
                 } else {
-                    player.sendMessage(ChatColor.RED + "" + commandError);
-
+                    player.sendMessage(ChatColor.RED + commandError);
                 }
             } else {
-                player.sendMessage(ChatColor.RED + "" + reasonsError);
+                player.sendMessage(ChatColor.RED + permissionError);
 
             }
 
         } else {
-            if (args.length == 0){
-                Bukkit.getLogger().info(ChatColor.RED + "" + lackOfUnderCommands);
-                return true;
+            if (args.length == 1) {
 
-            } else if (args.length == 1) {
-                for(Player onlinePlayers : Bukkit.getOnlinePlayers()){
-                    if (onlinePlayers.getName().equals(args[0])){
-                        onlinePlayers.teleport(RtpUtils.generateLocation(onlinePlayers));
-                        return true;
-                    }
+                Player player = Bukkit.getPlayer(args[0]);
+
+                if (player != null) {
+                    player.teleport(RtpUtils.generateLocation(player));
+                } else {
+                    Bukkit.getLogger().info(ChatColor.RED + playerError);
                 }
-                Bukkit.getLogger().info(ChatColor.RED + "" + playerError);
-                return true;
-            }
-            Bukkit.getLogger().info(ChatColor.RED + "" + commandError);
 
+            } else {
+                Bukkit.getLogger().info(ChatColor.RED + commandError);
+            }
         }
         return true;
     }

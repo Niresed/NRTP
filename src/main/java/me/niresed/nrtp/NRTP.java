@@ -8,19 +8,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
-public final class NRTP extends JavaPlugin implements Listener{
+public final class NRTP extends JavaPlugin implements Listener {
         @Override
         public void onEnable() {
             getConfig().options().copyDefaults();
             saveDefaultConfig();
 
+            registerEvents();
+
+            Objects.requireNonNull(getCommand("rtp")).setExecutor(new Rtp());
+        }
+
+        private void registerEvents() {
             getServer().getPluginManager().registerEvents(this, this);
             getServer().getPluginManager().registerEvents(new RtpRespawnEvent(), this);
             getServer().getPluginManager().registerEvents(new RtpJoinEvent(), this);
-            Objects.requireNonNull(getCommand("RTP")).setExecutor(new Rtp());
-        }
-        @Override
-        public void onDisable() {
         }
 }
 
