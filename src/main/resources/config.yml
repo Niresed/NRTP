@@ -2,6 +2,7 @@
 #            |             Welcome to config NRTP                    |
 #            --------------------------------------------------------
 
+
 random teleport region:
   - 0 # from X
   - 0 # from Z

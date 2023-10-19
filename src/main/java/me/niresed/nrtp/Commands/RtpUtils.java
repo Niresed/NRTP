@@ -50,6 +50,7 @@ public class RtpUtils {
     public static Location generateLocation(Player thisPlayer) {
         player = thisPlayer;
         Location location = generatingRandomCoordinates();
+
         while (true) {
             boolean checkLocation = isLocationDeserted(location);
             boolean checkTerritory = isTerritoryFree(location);

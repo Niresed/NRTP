@@ -15,7 +15,6 @@ public final class NRTP extends JavaPlugin implements Listener {
             saveDefaultConfig();
 
             registerEvents();
-
             Objects.requireNonNull(getCommand("rtp")).setExecutor(new Rtp());
         }
 

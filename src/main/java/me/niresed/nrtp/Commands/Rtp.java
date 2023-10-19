@@ -21,7 +21,6 @@ public class Rtp implements CommandExecutor {
         String commandError = plugin.getConfig().getString("command error");
 
         if (sender instanceof Player player) {
-
             if (player.hasPermission("nrtp.rtp")) {
                 if (args.length == 0) {
                     player.teleport(RtpUtils.generateLocation(player));

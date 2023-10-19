@@ -13,6 +13,7 @@ public class RtpJoinEvent implements Listener {
         if (!player.hasPlayedBefore()) {
             player.teleport(RtpUtils.generateLocation(player));
         }
+
     }
 
 }
