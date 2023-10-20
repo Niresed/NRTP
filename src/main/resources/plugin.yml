@@ -11,5 +11,5 @@ commands:
 
 permissions:
   nrtp.rtp:
-    description: Access to the ntrp command
+    description: Access to the nrtp command
     default: op
